@@ -14,7 +14,7 @@
   Written By: Christos Panagiotakopoulos
 */
 
-const NLP_ENABLED = true;
+const NLP_ENABLED = false;
 
 const fetch = require('node-fetch');
 const fs = require('fs');
