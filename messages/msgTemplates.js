@@ -3,7 +3,7 @@ const _ = require('lodash');
 const { FB, t } = require('fblib');
 const fb = new FB(global.FB_PAGE_TOKEN, global.FB_APP_SECRET);
 
-const { setContext } = require('../handlers/contextHandler');
+const { setContext } = require('../handlers/context');
 
 const m = require('../messages/menus');
 
