@@ -1,0 +1,60 @@
+const bodyParser = require('body-parser');
+const express = require('express');
+
+// Webserver parameter
+const PORT = process.env.PORT;
+if (!PORT)
+  throw new Error('missing PORT');
+
+global.FB_PAGE_TOKEN = process.env.FB_PAGE_TOKEN;
+if (!FB_PAGE_TOKEN)
+  throw new Error('missing FB_PAGE_TOKEN');
+  
+global.FB_APP_SECRET = process.env.FB_APP_SECRET;
+if (!FB_APP_SECRET)
+  throw new Error('missing FB_APP_SECRET');
+
+const FB_PAGE_ID = process.env.FB_PAGE_ID;
+if (!FB_PAGE_ID)
+  throw new Error('missing FB_PAGE_ID');
+
+const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
+if (!FB_VERIFY_TOKEN)
+  throw new Error('missing FB_VERIFY_TOKEN');
+
+const { FB, webhook, messengerWebhook } = require('fblib');
+const fb = new FB(global.FB_PAGE_TOKEN, global.FB_APP_SECRET);
+
+// Starting our webserver and putting it all together
+const app = express();
+app.use(bodyParser.json({ verify: fb.verifyRequestSignature }));
+
+// Webhook setup (Verify Token for the webhook)
+app.get('/fb', (req, res) => {
+  if (req.query['hub.mode'] === 'subscribe' &&
+    req.query['hub.verify_token'] === FB_VERIFY_TOKEN) {
+    console.log("Validating webhook");
+    res.status(200).send(req.query['hub.challenge']);
+  } else {
+    res.sendStatus(400);
+    throw new Error("Failed validation. Make sure the validation tokens match.");
+  }
+});
+
+const { attachmentHandler } = require('./handlers/attachments');
+const { getContext } = require('./handlers/context');
+const { menuHandler } = require('./handlers/payloads');
+const { textHandler } = require('./handlers/text');
+
+const messenger = messengerWebhook({
+  attachmentHandler,
+  textHandler,
+  getContext,
+  menuHandler
+});
+
+// Message handler
+app.post('/fb', webhook(messenger));
+
+app.listen(PORT);
+console.log('The Webhook is Initialized!');

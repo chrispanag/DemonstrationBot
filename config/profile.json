@@ -1,0 +1,45 @@
+{
+  "persistent_menu": [
+    {
+      "locale":"default",
+      "composer_input_disabled": false,
+      "call_to_actions": [
+        {
+          "title":"🔍 Κοντινές Στάσεις",
+          "type":"postback",
+          "payload":"near_stations"
+        },
+        {
+          "title":"ℹ️ Πληροφορίες",
+          "type":"nested",
+          "call_to_actions": [
+            {
+              "title":"❓ Βοήθεια",
+              "type":"postback",
+              "payload":"help"
+            },
+            {
+              "title":"📍 Περιοχές",
+              "type":"postback",
+              "payload":"places"
+            },
+            {
+              "title":"📖 Περί...",
+              "type":"postback",
+              "payload":"about"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "get_started": {
+    "payload":"greeting"
+  },
+  "greeting": [
+    {
+      "locale":"default",
+      "text":"Γειά σου {{user_first_name}}, στείλε μου την τοποθεσία σου ή την γραμμή και την στάση που θες και θα σου πω πότε έρχεται το λεωφορείο σου! 🚌 🚌 🚌"
+    }
+  ]
+}

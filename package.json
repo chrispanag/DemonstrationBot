@@ -1,0 +1,21 @@
+{
+  "name": "demonstrationbot",
+  "version": "1.0.0",
+  "description": "A Bot for Demonstrating",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node install.js",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "*",
+    "body-parser": "*",
+    "facebook": "git+https://chrispanag:7514e495bf47976d47eef39f857e2bf3c7b6f39c@github.com/chrispanag/facebookLib.git"
+  },
+  "author": "Christos Panagiotakopoulos",
+  "license": "ISC",
+  "engines": {
+    "node" : "^6.2.2"
+  }
+}
