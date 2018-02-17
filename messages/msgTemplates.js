@@ -3,9 +3,9 @@ const _ = require('lodash');
 const { FB, t } = require('fblib');
 const fb = new FB(global.FB_PAGE_TOKEN, global.FB_APP_SECRET);
 
-const { setContext } = require('../Handlers/contextHandler');
+const { setContext } = require('../handlers/contextHandler');
 
-const m = require('../src/menus');
+const m = require('../messages/menus');
 
 const DELAY = 500;
 
