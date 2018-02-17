@@ -1,7 +1,7 @@
 const _ = require('lodash');
 
-const { fbApp, t } = require('fblib');
-const fb = fbApp(FB_PAGE_TOKEN, FB_APP_SECRET);
+const { FB, t } = require('fblib');
+const fb = new FB(global.FB_PAGE_TOKEN, global.FB_APP_SECRET);
 
 const { setContext } = require('../Handlers/contextHandler');
 
@@ -19,7 +19,10 @@ function getStarted (id, user) {
         `Στείλε μου την τοποθεσία σου στο Messenger ή την γραμμή και την στάση που θες, για να σου πω σε πόση ώρα θα έρθει το λεωφορείο σου!`,
         {
           text: `Tο Πότε έρχεται το λεωφορείο μου λειτουργεί προς το παρόν μόνο για τα λεωφορεία του ΟΑΣΑ στην περιοχή της Αττικής :)`,
-          quickreplies: ["send_location", {text: "Zero Facebook", payload: {type: "fb0_info"}}],
+          quickreplies: [
+            "send_location", 
+            {text: "Zero Facebook", payload: {type: "fb0_info"}}
+          ],
           templateID: "GREETING"
         }
       ]);
