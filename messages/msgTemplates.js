@@ -17,14 +17,14 @@ function getStarted (id, user) {
 
 function attachmentDefaultAnswer (id) {
   setContext(id, {expecting: "nothing", step: "attachment_sent"});
-  return fb.fbMessageDelay(id, {
+  return fb.fbMessageDelay(DELAY, id, {
     text: `Προς το παρόν υποστηρίζω μόνο μηνύματα κειμένου.`
   });
 }
 
 function hodorDefault (id) {
   setContext(id, {expecting: "nothing", step: "hodor_default"});
-  return fb.fbMessageDelay(id, {
+  return fb.fbMessageDelay(DELAY, id, {
     text: `Hodor?`
   });
 }
