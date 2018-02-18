@@ -15,7 +15,6 @@ function getContext (messaging) {
     return retrieveUser(id).then(user => {
         if (user) {
             messaging.user = user;
-            user.context = {};
             return messaging;
         }
 
@@ -23,6 +22,7 @@ function getContext (messaging) {
             userData.id = id;
             userData.context = {};
             storeUser(id, userData);
+            messaging.user = userData;
             return messaging;
         });
     });
