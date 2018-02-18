@@ -54,7 +54,7 @@ const messenger = messengerWebhook({
 });
 
 // Message handler
-app.post('/fb', webhook(messenger));
+app.post('/fb', webhook(FB_PAGE_ID, messenger));
 
 app.listen(PORT);
 console.log('The Webhook is Initialized!');
