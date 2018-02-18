@@ -5,7 +5,7 @@ function textHandler (message, id, nlp, user) {
     const msg = message.text;
     return fb.startsTyping(id).then(() => {
         switch (msg.toUpperCase()) {
-            case "HODOR": return fb.fbMessage(id, "Hodor?");
+            case "HODOR": return fb.fbMessage(id, "Hodor? ");
             default: throw new Error("Unrecognized text Message");
         }
     });
