@@ -7,6 +7,7 @@
 */
 
 const { FB } = require('fblib');
+const User = require('../models/user');
 const { getUserData } = new FB(global.FB_PAGE_TOKEN, global.FB_APP_SECRET);
 
 // Global Context Object. It stores contexts in memory
@@ -32,10 +33,16 @@ function getContext (messaging) {
 
         // If we don't have the user stored (a session doesn't exist)
         return getUserData(id, dataPerUser).then(userData => {
-            userData.id = id;
-            userData.context = {};
-            storeUser(id, userData);
-            messaging.user = userData;
+            const newUser = new User(id, userData);
+            storeUser(id, newUser);
+            messaging.user = newUser;
+            return messaging;
+        }).catch(err => {
+            // The user doesn't have facebook
+            console.log(err);
+            const newUser = new User(id, {}, true);
+            storeUser(id, newUser);
+            messaging.user = newUser;
             return messaging;
         });
     });

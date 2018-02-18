@@ -22,7 +22,7 @@ function payloadWithoutData (messaging, payload, user) {
 // { type: <ROUTE_STRING>, data: <JSON_WITH_DATA> }
 function payloadWithData (messaging, payload, user) {
     const id = user.id;
-    const { type, data} = payload;
+    const { type, data } = payload;
     switch (type) {
         default: throw new Error(`ERROR: Unidentified payload type: ${type}`);
     }

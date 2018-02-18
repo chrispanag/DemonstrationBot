@@ -11,7 +11,7 @@ const DELAY = 500;
 function getStarted (id, user) {
   setContext(id, {expecting: "nothing", step: "get_started"});
   return fb.fbMessageDelay(DELAY, id, {
-    text: `Γεια σου ${user.first_name}! 😁`
+    text: `Γεια σου ${user.fullname}! 😁`
   });
 }
 
