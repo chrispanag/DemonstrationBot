@@ -7,11 +7,11 @@ if (!PORT)
   throw new Error('missing PORT');
 
 global.FB_PAGE_TOKEN = process.env.FB_PAGE_TOKEN;
-if (!FB_PAGE_TOKEN)
+if (!global.FB_PAGE_TOKEN)
   throw new Error('missing FB_PAGE_TOKEN');
   
 global.FB_APP_SECRET = process.env.FB_APP_SECRET;
-if (!FB_APP_SECRET)
+if (!global.FB_APP_SECRET)
   throw new Error('missing FB_APP_SECRET');
 
 const FB_PAGE_ID = process.env.FB_PAGE_ID;
@@ -23,11 +23,11 @@ if (!FB_VERIFY_TOKEN)
   throw new Error('missing FB_VERIFY_TOKEN');
 
 const { FB, webhook, messengerWebhook } = require('fblib');
-const fb = new FB(global.FB_PAGE_TOKEN, global.FB_APP_SECRET);
+const { verifyRequestSignature } = new FB(global.FB_PAGE_TOKEN, global.FB_APP_SECRET);
 
 // Starting our webserver and putting it all together
 const app = express();
-app.use(bodyParser.json({ verify: fb.verifyRequestSignature }));
+app.use(bodyParser.json({ verify: verifyRequestSignature }));
 
 // Webhook setup (Verify Token for the webhook)
 app.get('/fb', (req, res) => {

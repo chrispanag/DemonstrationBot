@@ -1,5 +1,5 @@
 const { FB } = require('fblib');
-const fb = new FB(global.FB_PAGE_TOKEN, global.FB_APP_SECRET);
+const { getUserData } = new FB(global.FB_PAGE_TOKEN, global.FB_APP_SECRET);
 
 const dataPerUser = [
     'first_name', 
@@ -18,7 +18,7 @@ function getContext (messaging) {
             return messaging;
         }
 
-        return fb.getUserData(id, dataPerUser).then(userData => {
+        return getUserData(id, dataPerUser).then(userData => {
             userData.id = id;
             userData.context = {};
             storeUser(id, userData);

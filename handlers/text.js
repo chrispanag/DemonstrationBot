@@ -11,7 +11,6 @@ function textHandler (message, id, nlp, user) {
     });
 }
 
-
 module.exports = {
     textHandler
 };

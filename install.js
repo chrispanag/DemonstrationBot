@@ -46,14 +46,13 @@ try {
     if (json.error) {
       console.error(`Error on Messenger Profile Setup:`);
       console.error(json.error);
-    }
-    else
+    } else
       console.log("\t\tMessenger Profile Setup: Success! :)");
   })
-  .catch(err =>
+  .catch(err => {
     // Handle Errors on the request itself
-    console.error(`Error on Messenger Profile Setup: ${err}`)
-  );
+    console.error(`Error on Messenger Profile Setup: ${err}`);
+  });
   promises.push(promise);
 } catch (err) {
   // Handle Errors on the reading of the file
