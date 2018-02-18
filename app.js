@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const { FB, webhook, messengerWebhook } = require('fblib');
 
 // Webserver parameter
 const PORT = process.env.PORT;
@@ -22,7 +23,15 @@ const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
 if (!FB_VERIFY_TOKEN)
   throw new Error('missing FB_VERIFY_TOKEN');
 
-const { FB, webhook, messengerWebhook } = require('fblib');
+/*  All the handlers files are inside the ./handlers folder. There are these handlers: 
+    {
+      attachmentHandler,
+      getContext,
+      menuHandler,
+      textHandler
+    }
+*/
+const handlers = require('./handlers');
 const { verifyRequestSignature } = new FB(global.FB_PAGE_TOKEN, global.FB_APP_SECRET);
 
 // Starting our webserver and putting it all together
@@ -41,17 +50,7 @@ app.get('/fb', (req, res) => {
   }
 });
 
-const { attachmentHandler } = require('./handlers/attachments');
-const { getContext } = require('./handlers/context');
-const { menuHandler } = require('./handlers/payloads');
-const { textHandler } = require('./handlers/text');
-
-const messenger = messengerWebhook({
-  attachmentHandler,
-  textHandler,
-  getContext,
-  menuHandler
-});
+const messenger = messengerWebhook(handlers);
 
 // Message handler
 app.post('/fb', webhook(FB_PAGE_ID, messenger));

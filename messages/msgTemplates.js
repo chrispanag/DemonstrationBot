@@ -3,19 +3,36 @@ const fb = new FB(global.FB_PAGE_TOKEN, global.FB_APP_SECRET);
 
 const { setContext } = require('../handlers/context');
 
-const m = require('../messages/menus');
+const menus = require('../messages/menus');
 
 const DELAY = 500;
 
 // Menu and Get Started
-
 function getStarted (id, user) {
   setContext(id, {expecting: "nothing", step: "get_started"});
-  return fb.fbMessage(DELAY, id, {
+  return fb.fbMessageDelay(DELAY, id, {
     text: `Γεια σου ${user.first_name}! 😁`
   });
 }
 
+function attachmentDefaultAnswer (id) {
+  setContext(id, {expecting: "nothing", step: "attachment_sent"});
+  return fb.fbMessageDelay(id, {
+    text: `Προς το παρόν υποστηρίζω μόνο μηνύματα κειμένου.`
+  });
+}
+
+function hodorDefault (id) {
+  setContext(id, {expecting: "nothing", step: "hodor_default"});
+  return fb.fbMessageDelay(id, {
+    text: `Hodor?`
+  });
+}
+
 module.exports = {
-  getStarted
+  // Menu and Get Started
+  getStarted,
+  // Default Answers
+  attachmentDefaultAnswer,
+  hodorDefault
 }
