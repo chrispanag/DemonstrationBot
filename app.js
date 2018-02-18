@@ -38,6 +38,7 @@ const { verifyRequestSignature } = new FB(global.FB_PAGE_TOKEN, global.FB_APP_SE
 const app = express();
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 
+
 // Webhook setup (Verify Token for the webhook)
 app.get('/fb', (req, res) => {
   if (req.query['hub.mode'] === 'subscribe' &&
