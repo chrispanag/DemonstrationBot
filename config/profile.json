@@ -34,7 +34,7 @@
     }
   ],
   "get_started": {
-    "payload":"greeting"
+    "payload":"get_started"
   },
   "greeting": [
     {

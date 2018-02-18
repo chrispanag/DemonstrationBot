@@ -51,7 +51,6 @@ const messenger = messengerWebhook({
   textHandler,
   getContext,
   menuHandler
-  
 });
 
 // Message handler
