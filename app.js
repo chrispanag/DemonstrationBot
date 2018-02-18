@@ -2,7 +2,6 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const { FB, webhook, messengerWebhook } = require('fblib');
 
-
 // Webserver parameter
 const PORT = process.env.PORT;
 if (!PORT)
