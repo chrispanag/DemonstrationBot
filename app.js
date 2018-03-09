@@ -10,7 +10,7 @@ if (!PORT)
 global.FB_PAGE_TOKEN = process.env.FB_PAGE_TOKEN;
 if (!global.FB_PAGE_TOKEN)
   throw new Error('missing FB_PAGE_TOKEN');
-  
+
 global.FB_APP_SECRET = process.env.FB_APP_SECRET;
 if (!global.FB_APP_SECRET)
   throw new Error('missing FB_APP_SECRET');

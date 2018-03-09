@@ -10,8 +10,9 @@
   },
   "dependencies": {
     "express": "*",
+    "node-fetch": "*",
     "body-parser": "*",
-    "facebook": "git+https://chrispanag:7514e495bf47976d47eef39f857e2bf3c7b6f39c@github.com/chrispanag/facebookLib.git"
+    "facebook": "git+https://github.com/chrispanag/facebookConnector.git"
   },
   "author": "Christos Panagiotakopoulos",
   "license": "ISC",
