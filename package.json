@@ -12,7 +12,7 @@
     "express": "*",
     "node-fetch": "*",
     "body-parser": "*",
-    "facebook": "git+https://github.com/chrispanag/facebookConnector.git"
+    "fblib": "git+https://github.com/chrispanag/facebookConnector.git"
   },
   "author": "Christos Panagiotakopoulos",
   "license": "ISC",
