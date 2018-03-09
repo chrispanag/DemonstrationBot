@@ -32,6 +32,7 @@ if (!FB_VERIFY_TOKEN)
     }
 */
 const handlers = require('./handlers');
+console.log(handlers);
 const { verifyRequestSignature } = new FB(global.FB_PAGE_TOKEN, global.FB_APP_SECRET);
 
 // Starting our webserver and putting it all together
