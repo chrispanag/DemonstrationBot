@@ -32,7 +32,6 @@ if (!FB_VERIFY_TOKEN)
     }
 */
 const handlers = require('./handlers');
-console.log(handlers);
 const { verifyRequestSignature } = new FB(global.FB_PAGE_TOKEN, global.FB_APP_SECRET);
 
 // Starting our webserver and putting it all together
@@ -55,7 +54,7 @@ app.get('/fb', (req, res) => {
 const messenger = messengerWebhook(handlers);
 
 // Message handler
-app.post('/fb', webhook(FB_PAGE_ID, {messenger}));
+app.post('/fb', webhook(FB_PAGE_ID, { messenger }));
 
 app.listen(PORT);
 console.log('The Webhook is Initialized!');
