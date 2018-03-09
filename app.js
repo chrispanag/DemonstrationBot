@@ -52,7 +52,7 @@ app.get('/fb', (req, res) => {
   }
 });
 
-const messenger = messengerWebhook(FB_PAGE_ID, handlers);
+const messenger = messengerWebhook(handlers);
 
 // Message handler
 app.post('/fb', webhook(FB_PAGE_ID, { messenger }));
